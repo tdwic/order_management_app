@@ -20,7 +20,7 @@
         app:srcCompat="@drawable/ic_baseline_person_24" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/txt_username"
         android:layout_width="250dp"
         android:layout_height="45dp"
         android:background="@drawable/custom_input"
@@ -36,7 +36,7 @@
         app:layout_constraintVertical_bias="0.324" />
 
     <EditText
-        android:id="@+id/editTextTextPassword"
+        android:id="@+id/txt_password"
         android:layout_width="250dp"
         android:layout_height="45dp"
         android:background="@drawable/custom_input"
@@ -52,7 +52,7 @@
         app:layout_constraintVertical_bias="0.406" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btn_login"
         android:layout_width="260dp"
         android:layout_height="43dp"
         android:background="@drawable/custom_button"
@@ -65,7 +65,7 @@
         app:layout_constraintVertical_bias="0.687" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btn_forgot_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/background_primary"
