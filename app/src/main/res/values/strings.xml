@@ -6,7 +6,6 @@
     <string name="forgot_password">FORGOT PASSWORD ?</string>
 
     <string name="main_menu">Main Menu</string>
-    <string name="add_products">Add Products</string>
     <string name="product_list">Products List</string>
     <string name="manage_requisitions">Manage Requisitions</string>
 
@@ -19,5 +18,16 @@
     <string name="upload">Upload</string>
     <string name="add_product_details">Add Product Details</string>
     <!--    new Order strings-->
+
+    <!--    add product details string-->
+    <string name="add_products">Add Products</string>
+    <string name="supplier">Supplier</string>
+    <string name="product_code">Product Code</string>
+    <string name="name">Name</string>
+    <string name="description">Description</string>
+    <string name="unit_price">Unit Price</string>
+    <string name="qty">Qty.</string>
+    <string name="add_product">Add Product</string>
+    <!--    add product details string-->
 
 </resources>
