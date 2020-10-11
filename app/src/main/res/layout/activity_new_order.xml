@@ -93,7 +93,7 @@
         app:layout_constraintVertical_bias="0.631" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/txt_sitemanger"
         android:layout_width="360dp"
         android:layout_height="40dp"
         android:background="@drawable/custom_input"
@@ -107,7 +107,7 @@
         app:layout_constraintVertical_bias="0.198" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/txt_location"
         android:layout_width="360dp"
         android:layout_height="40dp"
         android:background="@drawable/custom_input"
@@ -121,7 +121,7 @@
         app:layout_constraintVertical_bias="0.324" />
 
     <EditText
-        android:id="@+id/editTextTextMultiLine"
+        android:id="@+id/txt_delivery_note"
         android:layout_width="360dp"
         android:layout_height="100dp"
         android:background="@drawable/custom_input"
@@ -136,7 +136,7 @@
         app:layout_constraintVertical_bias="0.486" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btn_upload"
         android:layout_width="360dp"
         android:layout_height="126dp"
         android:background="@drawable/main_menu"
@@ -150,7 +150,7 @@
         app:layout_constraintVertical_bias="0.783" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/btn_add_product_details"
         android:layout_width="360dp"
         android:layout_height="39dp"
         android:background="@drawable/custom_button"
