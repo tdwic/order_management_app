@@ -8,6 +8,7 @@
     <string name="main_menu">Main Menu</string>
     <string name="add_products">Add Products</string>
     <string name="product_list">Products List</string>
+    <string name="manage_requisitions">Manage Requisitions</string>
 
     <!--    new Order strings-->
     <string name="site_manager">Site Manager</string>
