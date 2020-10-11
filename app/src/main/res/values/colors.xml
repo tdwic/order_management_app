@@ -6,5 +6,7 @@
     <color name="loginColour">#ffffff</color>
     <color name="white">#ffffff</color>
     <color name="purple">#9C27B0</color>
+    <color name="button_color">#FF3630E6</color>
+    <color name="button_color_faded">#D1CFFF</color>
     <color name="background_primary">#04A6EE</color>
 </resources>

@@ -2,11 +2,16 @@ package com.example.ordermanagementapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 
 public class MainMenu extends AppCompatActivity {
+
+    private Button btn_new_requisitions, btn_manage_requisitions, btn_log;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,5 +23,27 @@ public class MainMenu extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN); //enable full screen
 
         setContentView(R.layout.activity_main_menu);
+
+        btn_log = (Button) findViewById(R.id.btn_log);
+        btn_manage_requisitions = (Button) findViewById(R.id.btn_manage_requisions);
+        btn_new_requisitions  = (Button) findViewById(R.id.btn_new_requisitions);
+
+        btn_new_requisitions.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainMenu.this, NewOrder.class);
+                startActivity(intent);
+            }
+        });
+
+        btn_manage_requisitions.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainMenu.this, ManageRequesitions.class);
+                startActivity(intent);
+            }
+        });
+
+
     }
 }

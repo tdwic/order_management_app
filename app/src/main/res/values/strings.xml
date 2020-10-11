@@ -4,5 +4,19 @@
     <string name="password">Password</string>
     <string name="btn_login">LOGIN</string>
     <string name="forgot_password">FORGOT PASSWORD ?</string>
+
     <string name="main_menu">Main Menu</string>
+    <string name="add_products">Add Products</string>
+    <string name="product_list">Products List</string>
+
+    <!--    new Order strings-->
+    <string name="site_manager">Site Manager</string>
+    <string name="location">Location</string>
+    <string name="delivery_notes">Delivery Notes</string>
+    <string name="attach_document">Attach Document</string>
+    <string name="new_order">New Order</string>
+    <string name="upload">Upload</string>
+    <string name="add_product_details">Add Product Details</string>
+    <!--    new Order strings-->
+
 </resources>
