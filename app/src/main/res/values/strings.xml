@@ -30,4 +30,24 @@
     <string name="add_product">Add Product</string>
     <!--    add product details string-->
 
+    <!--    product list strings-->
+    <string name="save">Save</string>
+    <string name="get_approval">Get Approval</string>
+    <string name="approve">Approve</string>
+    <string name="total">Total</string>
+    <!--    product list strings-->
+
+    <!--    manage requisitions strings-->
+    <string name="search">Search</string>
+    <string name="search_orders">Search Orders</string>
+    <string name="view_orders">View Orders</string>
+    <!--    manage requisitions strings-->
+
+    <!--    view orders strings-->
+    <string name="order_save">Save</string>
+    <string name="complete">Complete</string>
+    <string name="order">Order</string>
+    <!--    view orders strings-->
+
+
 </resources>
