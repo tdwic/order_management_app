@@ -72,57 +72,6 @@ public class NewOrder extends AppCompatActivity {
     public void loadMethod(){
         String url = "https://oder-management-api.herokuapp.com/allUser";
 
-        JsonObjectRequest jsonObjectRequest;
-
-        jsonObjectRequest = new JsonObjectRequest
-                (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-
-                    @Override
-                    public void onResponse(JSONObject response) {
-//                        try {
-//                            JSONArray jsonArray = response.getJSONArray("users");
-//
-//                        } catch (JSONException e) {
-//                            e.printStackTrace();
-//                        }
-                        test.setText("Response: " + response.toString());
-                    }
-                }, new Response.ErrorListener() {
-
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        error.printStackTrace();
-
-                    }
-                });
-
-        mQueue.add(jsonObjectRequest);
-
-
-//        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
-//                (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-//
-//                    @Override
-//                    public void onResponse(JSONObject response) {
-////                        try {
-////                            JSONArray jsonArray = response.getJSONArray("users");
-////
-////                        } catch (JSONException e) {
-////                            e.printStackTrace();
-////                        }
-//                        test.setText("Response: " + response.toString());
-//                    }
-//                }, new Response.ErrorListener() {
-//
-//                    @Override
-//                    public void onErrorResponse(VolleyError error) {
-//                        error.printStackTrace();
-//
-//                    }
-//                });
-//
-//        mQueue.add(jsonObjectRequest);
-
     }
 
 }
