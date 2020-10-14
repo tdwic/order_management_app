@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -93,10 +94,19 @@ public class login extends AppCompatActivity {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     Toast.makeText(login.this, error.toString(), Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.GONE);
                 }
             });
+
+            booleanRequest.setRetryPolicy(new DefaultRetryPolicy(
+                    5000,
+                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+            ));
+
             // Add the request to the RequestQueue.
             queue.add(booleanRequest);
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
