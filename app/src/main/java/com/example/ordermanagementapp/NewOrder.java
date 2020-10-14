@@ -70,8 +70,7 @@ public class NewOrder extends AppCompatActivity {
     }
 
     public void loadMethod(){
-        String url = "https://oder-management-api.herokuapp.com/users";
-
+        String url = "https://oder-management-api.herokuapp.com/allUser";
 
         JsonObjectRequest jsonObjectRequest;
 
