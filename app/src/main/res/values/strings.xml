@@ -49,5 +49,9 @@
     <string name="order">Order</string>
     <!--    view orders strings-->
 
-
+    <!-- enquiries Strings -->
+    <string name="enquiries_view_list">Order List</string>
+    <string name="add_enquiry">Add Enquiry</string>
+    <string name="orderID">Order ID</string>
+    <string name="enquiry">Enquiry Details</string>
 </resources>
