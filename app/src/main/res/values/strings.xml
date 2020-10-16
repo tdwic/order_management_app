@@ -54,4 +54,5 @@
     <string name="add_enquiry">Add Enquiry</string>
     <string name="orderID">Order ID</string>
     <string name="enquiry">Enquiry Details</string>
+    <string name="loading">Loading...</string>
 </resources>

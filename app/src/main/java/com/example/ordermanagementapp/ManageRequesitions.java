@@ -12,6 +12,7 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -20,6 +21,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.ordermanagementapp.NonUiClases.AllUrlsForApp;
+import com.example.ordermanagementapp.NonUiClases.DialogLoad;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -50,6 +52,8 @@ public class ManageRequesitions extends AppCompatActivity {
 
     public void getAllOrders(){
 
+        final DialogLoad dialogLoad = new DialogLoad(ManageRequesitions.this);
+        dialogLoad.startDialog();
         AllUrlsForApp allUrlsForApp = new AllUrlsForApp();
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = allUrlsForApp.getOrders().toString();
@@ -57,7 +61,7 @@ public class ManageRequesitions extends AppCompatActivity {
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
-
+                dialogLoad.dismissDialog();
                 if (response.length() > 0){
 
                     String[][] tempData = new String[response.length()][5];
@@ -78,9 +82,10 @@ public class ManageRequesitions extends AppCompatActivity {
 
 
                     }
-
+                    dialogLoad.dismissDialog();
                     table_populate(tempData);
                 }else {
+                    dialogLoad.dismissDialog();
                     Toast.makeText(ManageRequesitions.this, "No Orders To View!", Toast.LENGTH_SHORT).show();
                 }
 
@@ -91,6 +96,12 @@ public class ManageRequesitions extends AppCompatActivity {
                 error.printStackTrace();
             }
         });
+
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                5000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+        ));
 
         queue.add(request);
 
