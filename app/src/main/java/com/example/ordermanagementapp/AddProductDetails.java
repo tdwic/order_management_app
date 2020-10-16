@@ -42,6 +42,7 @@ public class AddProductDetails extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(AddProductDetails.this, ProductList.class);
                 startActivity(intent);
+                finish();
             }
         });
 

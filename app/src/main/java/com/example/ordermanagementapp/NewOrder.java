@@ -59,8 +59,9 @@ public class NewOrder extends AppCompatActivity {
         btn_add_product_details.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(NewOrder.this, AddProductDetails.class );
+                Intent intent = new Intent(NewOrder.this, ProductList.class );
                 startActivity(intent);
+                finish();
             }
         });
 

@@ -73,7 +73,7 @@
     </TableLayout>
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btn_add_product"
         android:layout_width="66dp"
         android:layout_height="51dp"
         android:background="?attr/selectableItemBackground"
