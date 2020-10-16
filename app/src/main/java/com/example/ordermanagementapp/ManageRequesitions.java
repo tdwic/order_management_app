@@ -12,6 +12,21 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.ordermanagementapp.NonUiClases.AllUrlsForApp;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.List;
+
 public class ManageRequesitions extends AppCompatActivity {
 
     private TableLayout tableLayout;
@@ -27,13 +42,61 @@ public class ManageRequesitions extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN); //enable full screen
 
         setContentView(R.layout.activity_manage_requesitions);
+        getAllOrders();
 
-        table_populate();
 
 
     }
 
-    public void table_populate(){
+    public void getAllOrders(){
+
+        AllUrlsForApp allUrlsForApp = new AllUrlsForApp();
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url = allUrlsForApp.getOrders().toString();
+
+        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+
+                if (response.length() > 0){
+
+                    String[][] tempData = new String[response.length()][5];
+                    for (int i=0; i < response.length(); i++){
+
+                        try {
+                            JSONObject order = response.getJSONObject(i);
+
+                            tempData[i][0] = order.getString("id").toString();
+                            tempData[i][1] = order.getString("site");
+                            tempData[i][2] = order.getString("approvelManager");
+                            tempData[i][3] = order.getString("totalPrice");
+                            tempData[i][4] = order.getString("supplier");
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+
+                    }
+
+                    table_populate(tempData);
+                }else {
+                    Toast.makeText(ManageRequesitions.this, "No Orders To View!", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        });
+
+        queue.add(request);
+
+    }
+
+    public void table_populate(String[][] list){
 
         tableLayout = (TableLayout) findViewById(R.id.table_main);
 
@@ -44,13 +107,15 @@ public class ManageRequesitions extends AppCompatActivity {
         final int[] rowSelectColorRGB = {105,186,255} ;//RGB ints for table row
         int[] paddingLTRB = {10,10,10,10} ;//Padding Left, Top, Right, Bottom
         String[] textViewHeader = {"OrderID","Site","Sitemanger","Total Price","Supplier"}; //Table Column Headers
-        String[][] tableData = {
-                                {"B001","Mathara","Mr.Perera","$100","ABC"},
-                                {"B002","Gampaha","Mr.Lalith","$100","ABC"},
-                                {"B003","Colombo","Mr.Upul","$100","ABC"},
-                                {"B004","Jaffna","Mr.Silva","$100","ABC"},
-                                {"B005","Mathale","Mr.Kamal","$100","ABC"}
-                                }; //Table Data
+//        String[][] tableData = {
+//                                {"B001","Mathara","Mr.Perera","$100","ABC"},
+//                                {"B002","Gampaha","Mr.Lalith","$100","ABC"},
+//                                {"B003","Colombo","Mr.Upul","$100","ABC"},
+//                                {"B004","Jaffna","Mr.Silva","$100","ABC"},
+//                                {"B005","Mathale","Mr.Kamal","$100","ABC"}
+//                                }; //Table Data
+
+        String[][] tableData = list;
 
         tableRowHeader = new TableRow(this);
 
