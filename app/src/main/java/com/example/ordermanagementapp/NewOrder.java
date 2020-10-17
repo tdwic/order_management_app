@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DownloadManager;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -105,6 +107,11 @@ public class NewOrder extends AppCompatActivity {
         site = txt_location.getText().toString();
         deliveryNote = txt_delivery_notes.getText().toString();
 
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        sharedPreferences.edit().clear().commit();
+        final SharedPreferences.Editor editor = sharedPreferences.edit();
+
+
         final DialogLoad dialogLoad = new DialogLoad(NewOrder.this);
         dialogLoad.startDialog();
         AllUrlsForApp allUrlsForApp = new AllUrlsForApp();
@@ -135,6 +142,8 @@ public class NewOrder extends AppCompatActivity {
                 if (response.length() > 0){
                     try {
                         returnOrderID = response.getString("orderNo").toString();
+                        editor.putString("orderID", returnOrderID);
+                        editor.commit();
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
