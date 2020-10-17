@@ -8,10 +8,12 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class ProductList extends AppCompatActivity {
 
     private Button add_product_btn;
+    private String OrderNo = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,12 +26,17 @@ public class ProductList extends AppCompatActivity {
 
         setContentView(R.layout.activity_product_list);
 
+        Intent intent = getIntent();
+        OrderNo = intent.getStringExtra("orderId");
+//        Toast.makeText(ProductList.this, "OrderNo " + OrderNo, Toast.LENGTH_SHORT).show();
+
         add_product_btn = findViewById(R.id.btn_add_product);
 
         add_product_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ProductList.this, AddProductDetails.class);
+                intent.putExtra("orderId", OrderNo);
                 startActivity(intent);
                 finish();
             }

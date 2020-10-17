@@ -5,8 +5,11 @@ public class AllUrlsForApp {
     private String validate = "https://oder-management-api.herokuapp.com/validate";
     private String products = "https://oder-management-api.herokuapp.com/getproducts";
     private String saveOrder = "https://oder-management-api.herokuapp.com/saveOrder";
+    private String saveProduct = "https://oder-management-api.herokuapp.com/saveProduct";
     private String orderDetailsById = "https://oder-management-api.herokuapp.com/getOrderDetailsById/";
     private String orders = "https://oder-management-api.herokuapp.com/getOrders";
+    private String allSiteManagers = "https://oder-management-api.herokuapp.com/allSiteManagers";
+    private String allSuppliers = "https://oder-management-api.herokuapp.com/allSuppliers";
 
     public String getValidate() {
         return validate;
@@ -26,5 +29,17 @@ public class AllUrlsForApp {
 
     public String getOrders() {
         return orders;
+    }
+
+    public String getAllSiteManagers() {
+        return allSiteManagers;
+    }
+
+    public String getAllSuppliers() {
+        return allSuppliers;
+    }
+
+    public String getSaveProduct() {
+        return saveProduct;
     }
 }

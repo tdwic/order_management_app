@@ -70,7 +70,7 @@ public class ManageRequesitions extends AppCompatActivity {
                         try {
                             JSONObject order = response.getJSONObject(i);
 
-                            tempData[i][0] = order.getString("id").toString();
+                            tempData[i][0] = order.getString("orderId").toString();
                             tempData[i][1] = order.getString("site");
                             tempData[i][2] = order.getString("approvelManager");
                             tempData[i][3] = order.getString("totalPrice");
