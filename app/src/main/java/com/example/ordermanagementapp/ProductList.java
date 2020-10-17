@@ -160,8 +160,8 @@ public class ProductList extends AppCompatActivity {
         dialogLoad.startDialog();
         AllUrlsForApp allUrlsForApp = new AllUrlsForApp();
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = allUrlsForApp.getOrderDetailsByNo().toString() + "B00025";
-//        String url = allUrlsForApp.getOrderDetailsByNo().toString() + OrderNo;
+//        String url = allUrlsForApp.getOrderDetailsByNo().toString() + "B00025";
+        String url = allUrlsForApp.getOrderDetailsByNo().toString() + OrderNo;
 
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
