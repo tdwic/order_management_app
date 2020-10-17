@@ -2,6 +2,7 @@ package com.example.ordermanagementapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -194,4 +195,10 @@ public class ManageRequesitions extends AppCompatActivity {
         }
 
     }
+
+    public void goToPrevious(View v){
+        Intent intent = new Intent(ManageRequesitions.this, MainMenu.class);
+        startActivity(intent);
+    }
+
 }

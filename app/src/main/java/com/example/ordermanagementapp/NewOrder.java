@@ -220,4 +220,9 @@ public class NewOrder extends AppCompatActivity {
         queue.add(request);
     }
 
+    public void goToPrevious(View v){
+        Intent intent = new Intent(NewOrder.this, MainMenu.class);
+        startActivity(intent);
+    }
+
 }

@@ -116,4 +116,9 @@ public class Inquirylist extends AppCompatActivity {
         }
 
     }
+
+    public void goToPrevious(View v){
+        Intent intent = new Intent(Inquirylist.this, MainMenu.class);
+        startActivity(intent);
+    }
 }

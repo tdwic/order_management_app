@@ -2,6 +2,7 @@ package com.example.ordermanagementapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -37,6 +38,11 @@ public class addEnquiry extends AppCompatActivity {
     public void clearData(View v){
         orderText.setText("");
         enquiryDetText.setText("");
+    }
+
+    public void goToPrevious(View v){
+        Intent intent = new Intent(addEnquiry.this, Inquirylist.class);
+        startActivity(intent);
     }
 
 }
