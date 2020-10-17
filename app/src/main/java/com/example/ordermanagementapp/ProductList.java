@@ -25,6 +25,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.ordermanagementapp.NonUiClases.AllUrlsForApp;
+import com.example.ordermanagementapp.NonUiClases.BooleanRequest;
 import com.example.ordermanagementapp.NonUiClases.DialogLoad;
 
 import org.json.JSONArray;
@@ -84,11 +85,25 @@ public class ProductList extends AppCompatActivity {
                 finish();
             }
         });
+        get_approve_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    UpdateOrderStatus("pending",OrderNo);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
         approve_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                try {
+                    UpdateOrderStatus("approved",OrderNo);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -99,6 +114,45 @@ public class ProductList extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void UpdateOrderStatus(String status, String OrderId) throws JSONException {
+        final DialogLoad dialogLoad = new DialogLoad(ProductList.this);
+        dialogLoad.startDialog();
+        AllUrlsForApp allUrlsForApp = new AllUrlsForApp();
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url = allUrlsForApp.getUpdateOrderStatus().toString();
+
+        try {
+            JSONObject jsonBody;
+            jsonBody = new JSONObject();
+            jsonBody.put("status", status);
+            jsonBody.put("orderno", OrderId);
+            String requestBody = jsonBody.toString();
+            BooleanRequest booleanRequest = new BooleanRequest(Request.Method.POST, url, requestBody, new Response.Listener<Boolean>() {
+                @Override
+                public void onResponse(Boolean response) {
+                    dialogLoad.dismissDialog();
+                    Toast.makeText(ProductList.this, "Process Completed", Toast.LENGTH_SHORT).show();
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(ProductList.this, error.toString(), Toast.LENGTH_SHORT).show();
+                }
+            });
+
+            booleanRequest.setRetryPolicy(new DefaultRetryPolicy(
+                    5000,
+                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+            ));
+
+            // Add the request to the RequestQueue.
+            queue.add(booleanRequest);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     public void PopulateTable(){
