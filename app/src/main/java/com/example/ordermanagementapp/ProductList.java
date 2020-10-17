@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
@@ -32,7 +33,7 @@ import org.json.JSONObject;
 
 public class ProductList extends AppCompatActivity {
 
-    private Button add_product_btn;
+    private Button add_product_btn, approve_btn, get_approve_btn, save_btn;
     private TextView txt_price_total;
     private String OrderNo = "";
     private TableRow tableRowHeader,tableRowData;
@@ -59,7 +60,18 @@ public class ProductList extends AppCompatActivity {
 //        Toast.makeText(ProductList.this, "OrderNo " + OrderNo, Toast.LENGTH_SHORT).show();
         txt_price_total = (TextView) findViewById(R.id.txt_total_price);
         txt_price_total.setText("Rs. "+total_price);
+
+        approve_btn = (Button) findViewById(R.id.btn_approve);
+        get_approve_btn = (Button) findViewById(R.id.btn_get_approve);
+        get_approve_btn.setEnabled(false);
+        save_btn = (Button) findViewById(R.id.btn_save);
+        save_btn.setEnabled(false);
+
+
+
         PopulateTable();
+
+
 
         add_product_btn = findViewById(R.id.btn_add_product);
 
@@ -70,6 +82,20 @@ public class ProductList extends AppCompatActivity {
                 intent.putExtra("orderId", OrderNo);
                 startActivity(intent);
                 finish();
+            }
+        });
+
+        approve_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        save_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
 
@@ -112,6 +138,16 @@ public class ProductList extends AppCompatActivity {
                     }
                     dialogLoad.dismissDialog();
                     txt_price_total.setText("Rs. "+total_price);
+
+                    if (total_price > 100000.0f){
+                        Toast.makeText(ProductList.this, "Over range", Toast.LENGTH_SHORT).show();
+                        approve_btn.setEnabled(false);
+                        get_approve_btn.setEnabled(true);
+                        approve_btn.setBackgroundResource(R.drawable.main_menu);
+                        get_approve_btn.setBackgroundResource(R.drawable.custom_button);
+                        get_approve_btn.setTextColor(Color.WHITE);
+                    }
+
                     table_populate(tempData);
                 }else {
                     dialogLoad.dismissDialog();
@@ -137,9 +173,6 @@ public class ProductList extends AppCompatActivity {
     }
 
     public void  table_populate(String[][] list){
-
-
-
         tableLayout = (TableLayout) findViewById(R.id.table_main);
 
         int[] textViewColumnWidth = {170,220,210,220,180};//Each Column Width

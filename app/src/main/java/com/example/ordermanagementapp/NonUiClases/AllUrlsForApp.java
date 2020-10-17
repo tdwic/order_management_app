@@ -11,6 +11,7 @@ public class AllUrlsForApp {
     private String allSiteManagers = "https://oder-management-api.herokuapp.com/allSiteManagers";
     private String allSuppliers = "https://oder-management-api.herokuapp.com/allSuppliers";
     private String OrderDetailsByNo = "https://oder-management-api.herokuapp.com/getOrderDetailsByNo/";
+    private String updateOrderStatus = "https://oder-management-api.herokuapp.com/updateStatus";
 
     public String getValidate() {
         return validate;
@@ -46,5 +47,9 @@ public class AllUrlsForApp {
 
     public String getOrderDetailsByNo() {
         return OrderDetailsByNo;
+    }
+
+    public String getUpdateOrderStatus() {
+        return updateOrderStatus;
     }
 }
