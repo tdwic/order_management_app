@@ -68,7 +68,7 @@ public class AddProductDetails extends AppCompatActivity {
             public void onClick(View v) {
                 String productName =  txt_name.getText().toString();
                 int quantity =  Integer.parseInt(txt_qty.getText().toString());
-                float unitPrice =  Float.parseFloat(txt_unit_price.getText().toString());
+                Float unitPrice =  Float.parseFloat(txt_unit_price.getText().toString());
                 String supplier = txt_supplier.getSelectedItem().toString();
                 String orderNo = OrderId.toString();
 
@@ -128,7 +128,7 @@ public class AddProductDetails extends AppCompatActivity {
         queue.add(request);
     }
 
-    public void AddNewProduct(String productName , int quantity, float unitPrice, String supplier, String orderNo ) throws JSONException {
+    public void AddNewProduct(String productName , int quantity, Float unitPrice, String supplier, String orderNo ) throws JSONException {
         final DialogLoad dialogLoad = new DialogLoad(AddProductDetails.this);
         dialogLoad.startDialog();
         AllUrlsForApp allUrlsForApp = new AllUrlsForApp();

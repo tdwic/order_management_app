@@ -33,9 +33,11 @@ import org.json.JSONObject;
 public class ProductList extends AppCompatActivity {
 
     private Button add_product_btn;
+    private TextView txt_price_total;
     private String OrderNo = "";
     private TableRow tableRowHeader,tableRowData;
     private TableLayout tableLayout;
+    private float total_price;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,13 +50,15 @@ public class ProductList extends AppCompatActivity {
 
         setContentView(R.layout.activity_product_list);
 
+        total_price = 0.00f;
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         OrderNo = sharedPreferences.getString("orderID",null);
         //Intent intent = getIntent();
         //OrderNo = intent.getStringExtra("orderId");
 //        Toast.makeText(ProductList.this, "OrderNo " + OrderNo, Toast.LENGTH_SHORT).show();
-
+        txt_price_total = (TextView) findViewById(R.id.txt_total_price);
+        txt_price_total.setText("Rs. "+total_price);
         PopulateTable();
 
         add_product_btn = findViewById(R.id.btn_add_product);
@@ -76,8 +80,8 @@ public class ProductList extends AppCompatActivity {
         dialogLoad.startDialog();
         AllUrlsForApp allUrlsForApp = new AllUrlsForApp();
         RequestQueue queue = Volley.newRequestQueue(this);
-//        String url = allUrlsForApp.getOrderDetailsByNo().toString() + "B00021";
-        String url = allUrlsForApp.getOrderDetailsByNo().toString() + OrderNo;
+        String url = allUrlsForApp.getOrderDetailsByNo().toString() + "B00025";
+//        String url = allUrlsForApp.getOrderDetailsByNo().toString() + OrderNo;
 
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
@@ -98,6 +102,8 @@ public class ProductList extends AppCompatActivity {
 //                            tempData[i][4] = order.getString("X");
                             tempData[i][4] = "X";
 
+                            total_price = total_price + Float.parseFloat(order.getString("price"));
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -105,6 +111,7 @@ public class ProductList extends AppCompatActivity {
 
                     }
                     dialogLoad.dismissDialog();
+                    txt_price_total.setText("Rs. "+total_price);
                     table_populate(tempData);
                 }else {
                     dialogLoad.dismissDialog();
