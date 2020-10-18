@@ -101,6 +101,11 @@ public class NewOrder extends AppCompatActivity {
 
     }
 
+    /**
+     * new Order
+     * @throws JSONException
+     * @throws ParseException
+     */
     public void NewOrder() throws JSONException, ParseException {
 
         siteManagerName = txt_site_manager_spin.getSelectedItem().toString();
@@ -120,6 +125,7 @@ public class NewOrder extends AppCompatActivity {
 
         String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
 
+        //Json object creation
         JSONObject object = new JSONObject();
         object.put("site",site);
         object.put("totalPrice",0.0);
@@ -169,10 +175,14 @@ public class NewOrder extends AppCompatActivity {
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
         ));
 
+        //adding to request timeout
         queue.add(request);
 
     }
 
+    /**
+     * site manager loading to the UI
+     */
     public void loadMethod(){
         final ArrayList<String> SiteManagerList = new ArrayList<String>();
         AllUrlsForApp allUrlsForApp = new AllUrlsForApp();
@@ -220,6 +230,10 @@ public class NewOrder extends AppCompatActivity {
         queue.add(request);
     }
 
+    /**
+     * returnning to back
+     * @param v
+     */
     public void goToPrevious(View v){
         Intent intent = new Intent(NewOrder.this, MainMenu.class);
         startActivity(intent);

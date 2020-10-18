@@ -117,6 +117,12 @@ public class ProductList extends AppCompatActivity {
 
     }
 
+    /**
+     * save order details
+     * @param orderId
+     * @param supplier
+     * @param totalPrice
+     */
     public void SaveOrderDetails(String orderId, String supplier, Float totalPrice){
         final DialogLoad dialogLoad = new DialogLoad(ProductList.this);
         dialogLoad.startDialog();
@@ -159,6 +165,12 @@ public class ProductList extends AppCompatActivity {
 
     }
 
+    /**
+     * update order status
+     * @param status
+     * @param OrderId
+     * @throws JSONException
+     */
     public void UpdateOrderStatus(String status, String OrderId) throws JSONException {
         final DialogLoad dialogLoad = new DialogLoad(ProductList.this);
         dialogLoad.startDialog();
@@ -198,6 +210,9 @@ public class ProductList extends AppCompatActivity {
         }
     }
 
+    /**
+     * populate table
+     */
     public void PopulateTable(){
         final DialogLoad dialogLoad = new DialogLoad(ProductList.this);
         dialogLoad.startDialog();
@@ -270,6 +285,10 @@ public class ProductList extends AppCompatActivity {
 
     }
 
+    /**
+     * populate table
+     * @param list
+     */
     public void  table_populate(String[][] list){
         tableLayout = (TableLayout) findViewById(R.id.table_main);
 
@@ -280,13 +299,7 @@ public class ProductList extends AppCompatActivity {
         final int[] rowSelectColorRGB = {105,186,255} ;//RGB ints for table row
         int[] paddingLTRB = {10,10,10,10} ;//Padding Left, Top, Right, Bottom
         String[] textViewHeader = {"Code","Name","Quantity","Price","Action"}; //Table Column Headers
-//        String[][] tableData = {
-//                                {"B001","Mathara","Mr.Perera","$100","ABC"},
-//                                {"B002","Gampaha","Mr.Lalith","$100","ABC"},
-//                                {"B003","Colombo","Mr.Upul","$100","ABC"},
-//                                {"B004","Jaffna","Mr.Silva","$100","ABC"},
-//                                {"B005","Mathale","Mr.Kamal","$100","ABC"}
-//                                }; //Table Data
+
 
         String[][] tableData = list;
 
@@ -305,7 +318,7 @@ public class ProductList extends AppCompatActivity {
             tableRowHeader.addView(header);
         }
         tableLayout.addView(tableRowHeader);
-
+        //setting views for the table
         for (int row = 0; row < tableData.length; row++){
 
             tableRowData = new TableRow(this);

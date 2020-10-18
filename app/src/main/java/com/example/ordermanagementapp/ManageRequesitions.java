@@ -52,6 +52,7 @@ public class ManageRequesitions extends AppCompatActivity {
         btn_order_view = findViewById(R.id.btn_view_order);
         getAllOrders();
 
+        //button click lister starting
         btn_order_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,6 +66,9 @@ public class ManageRequesitions extends AppCompatActivity {
 
     }
 
+    /**
+     * Get all order method
+     */
     public void getAllOrders(){
 
         final DialogLoad dialogLoad = new DialogLoad(ManageRequesitions.this);
@@ -73,6 +77,7 @@ public class ManageRequesitions extends AppCompatActivity {
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = allUrlsForApp.getGetUnCompletedOrders().toString();
 
+        //creating json request
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
@@ -111,6 +116,7 @@ public class ManageRequesitions extends AppCompatActivity {
             }
         });
 
+        //Increasing request time out
         request.setRetryPolicy(new DefaultRetryPolicy(
                 5000,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
@@ -121,6 +127,10 @@ public class ManageRequesitions extends AppCompatActivity {
 
     }
 
+    /**
+     * populate table
+     * @param list
+     */
     public void table_populate(String[][] list){
 
         tableLayout = (TableLayout) findViewById(R.id.table_main);
@@ -132,13 +142,7 @@ public class ManageRequesitions extends AppCompatActivity {
         final int[] rowSelectColorRGB = {105,186,255} ;//RGB ints for table row
         int[] paddingLTRB = {10,10,10,10} ;//Padding Left, Top, Right, Bottom
         String[] textViewHeader = {"OrderID","Site","Sitemanger","Total Price","Supplier"}; //Table Column Headers
-//        String[][] tableData = {
-//                                {"B001","Mathara","Mr.Perera","$100","ABC"},
-//                                {"B002","Gampaha","Mr.Lalith","$100","ABC"},
-//                                {"B003","Colombo","Mr.Upul","$100","ABC"},
-//                                {"B004","Jaffna","Mr.Silva","$100","ABC"},
-//                                {"B005","Mathale","Mr.Kamal","$100","ABC"}
-//                                }; //Table Data
+
 
         String[][] tableData = list;
 
@@ -165,6 +169,7 @@ public class ManageRequesitions extends AppCompatActivity {
             tableRowData.setBackgroundColor(Color.rgb(rowColorRGB[0], rowColorRGB[1], rowColorRGB[2]));
             final Boolean[] isRowSelect = {false};
 
+            //table row click event
             tableRowData.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -211,6 +216,10 @@ public class ManageRequesitions extends AppCompatActivity {
 
     }
 
+    /**
+     * returnning to previous
+     * @param v
+     */
     public void goToPrevious(View v){
         Intent intent = new Intent(ManageRequesitions.this, MainMenu.class);
         startActivity(intent);

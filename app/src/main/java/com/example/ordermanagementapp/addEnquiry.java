@@ -35,6 +35,7 @@ public class addEnquiry extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE); //will hide the title
         getSupportActionBar().hide(); // hide the title bar
@@ -42,6 +43,7 @@ public class addEnquiry extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN); //enable full screen
         setContentView(R.layout.activity_add_enquiry);
 
+        //getting
         orderID = getIntent().getStringExtra("orderID");
 
         orderText = (TextView) findViewById(R.id.txt_orderID);
@@ -50,6 +52,7 @@ public class addEnquiry extends AppCompatActivity {
         inquiry = enquiryDetText.getText().toString();
         orderText.setText(orderID);
 
+        //Inquiry adding
         inquiry_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,12 +67,20 @@ public class addEnquiry extends AppCompatActivity {
 
     }
 
+    /**
+     * Adding Inquire details
+     * @param OrderID
+     * @param Inquiry
+     * @throws JSONException
+     */
     public void AddInquiryDetails(String OrderID, String Inquiry) throws JSONException {
-        final DialogLoad dialogLoad = new DialogLoad(addEnquiry.this);
+
+        final DialogLoad dialogLoad = new DialogLoad(addEnquiry.this); //busy message starting.
         dialogLoad.startDialog();
-        AllUrlsForApp allUrlsForApp = new AllUrlsForApp();
-        RequestQueue queue = Volley.newRequestQueue(this);
-        String url = allUrlsForApp.getSaveInquiry().toString();
+
+        AllUrlsForApp allUrlsForApp = new AllUrlsForApp(); //getting url from the common url base
+        RequestQueue queue = Volley.newRequestQueue(this); //creting a request que
+        String url = allUrlsForApp.getSaveInquiry().toString();//getting url from the common url base
 
         try {
             JSONObject jsonBody;
@@ -95,6 +106,7 @@ public class addEnquiry extends AppCompatActivity {
                 }
             });
 
+            //Increasing request timeout
             booleanRequest.setRetryPolicy(new DefaultRetryPolicy(
                     5000,
                     DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
@@ -108,11 +120,19 @@ public class addEnquiry extends AppCompatActivity {
         }
     }
 
+    /**
+     * clear data from user input
+     * @param v
+     */
     public void clearData(View v){
         orderText.setText("");
         enquiryDetText.setText("");
     }
 
+    /**
+     * Navigate to previous intent
+     * @param v
+     */
     public void goToPrevious(View v){
         Intent intent = new Intent(addEnquiry.this, Inquirylist.class);
         startActivity(intent);

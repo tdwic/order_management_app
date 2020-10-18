@@ -42,7 +42,7 @@ public class login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
 
-
+        //Buttons and text views connection through findView
         btn_login = (Button) findViewById(R.id.btn_login);
         btn_forgot_password = (Button) findViewById(R.id.btn_forgot_password);
 
@@ -58,6 +58,7 @@ public class login extends AppCompatActivity {
                 String userName = user_name.getText().toString();
                 String userPassword = password.getText().toString();
 
+                //Preventing null values inserting
                 if ( (userName != null && userName.length() !=0) && (userPassword != null && userPassword.length() !=0) ){
                     try {
                         loginUser(userName,userPassword);
@@ -72,12 +73,21 @@ public class login extends AppCompatActivity {
         });
     }
 
+    /**
+     * Validating Users by giving
+     *      * username and password
+     * @param username
+     * @param password
+     * @throws JSONException
+     */
+
     public void loginUser(String username, String password) throws JSONException {
         progressBar.setVisibility(View.VISIBLE);
         AllUrlsForApp allUrlsForApp = new AllUrlsForApp();
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = allUrlsForApp.getValidate().toString();
 
+        //JSON Object creation to send user data to backend.
         try {
             JSONObject jsonBody;
             jsonBody = new JSONObject();
@@ -98,6 +108,7 @@ public class login extends AppCompatActivity {
                 }
             });
 
+            //requets timeout increased
             booleanRequest.setRetryPolicy(new DefaultRetryPolicy(
                     5000,
                     DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
@@ -112,6 +123,10 @@ public class login extends AppCompatActivity {
         }
     }
 
+    /**
+     * To change intent after compleating the process
+     * @param response
+     */
     public void ChangeIntent(Boolean response){
         if (response){
 

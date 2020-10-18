@@ -45,6 +45,9 @@ public class Inquirylist extends AppCompatActivity {
         //table_populate();
     }
 
+    /**
+     * Getting all order details
+     */
     public void getAllOrders(){
 
         final DialogLoad dialogLoad = new DialogLoad(Inquirylist.this);
@@ -77,7 +80,7 @@ public class Inquirylist extends AppCompatActivity {
 
                     }
                     dialogLoad.dismissDialog();
-                    table_populate(tempData);
+                    table_populate(tempData); //Populating the table
                 }else {
                     dialogLoad.dismissDialog();
                     Toast.makeText(Inquirylist.this, "No Orders To View!", Toast.LENGTH_SHORT).show();
@@ -97,10 +100,15 @@ public class Inquirylist extends AppCompatActivity {
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
         ));
 
+        //adding to the request que
         queue.add(request);
 
     }
 
+    /**
+     * table populating method
+     * @param list
+     */
     public void table_populate(String[][] list){
 
         tableLayout = (TableLayout) findViewById(R.id.table_main);
@@ -136,7 +144,7 @@ public class Inquirylist extends AppCompatActivity {
 
             tableRowHeader.addView(header);
         }
-        tableLayout.addView(tableRowHeader);
+        tableLayout.addView(tableRowHeader); //assigning data to table view
 
         for (int row = 0; row < tableData.length; row++){
 
@@ -190,6 +198,10 @@ public class Inquirylist extends AppCompatActivity {
 
     }
 
+    /**
+     * returning to previous intent
+     * @param v
+     */
     public void goToPrevious(View v){
         Intent intent = new Intent(Inquirylist.this, MainMenu.class);
         startActivity(intent);

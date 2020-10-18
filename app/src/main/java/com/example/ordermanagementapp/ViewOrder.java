@@ -73,6 +73,10 @@ public class ViewOrder extends AppCompatActivity {
 
     }
 
+    /**
+     * returnning to previous
+     * @param v
+     */
     public void goToPrevious(View v){
         Intent intent = new Intent(ViewOrder.this, ManageRequesitions.class);
         startActivity(intent);
@@ -183,6 +187,10 @@ public class ViewOrder extends AppCompatActivity {
 
     }
 
+    /**
+     * table populating
+     * @param list
+     */
     public void  table_populate(String[][] list){
         tableLayout = (TableLayout) findViewById(R.id.table_main);
 
@@ -193,13 +201,6 @@ public class ViewOrder extends AppCompatActivity {
         final int[] rowSelectColorRGB = {105,186,255} ;//RGB ints for table row
         int[] paddingLTRB = {10,10,10,10} ;//Padding Left, Top, Right, Bottom
         String[] textViewHeader = {"Code","Name","Quantity","Price","Action"}; //Table Column Headers
-//        String[][] tableData = {
-//                                {"B001","Mathara","Mr.Perera","$100","ABC"},
-//                                {"B002","Gampaha","Mr.Lalith","$100","ABC"},
-//                                {"B003","Colombo","Mr.Upul","$100","ABC"},
-//                                {"B004","Jaffna","Mr.Silva","$100","ABC"},
-//                                {"B005","Mathale","Mr.Kamal","$100","ABC"}
-//                                }; //Table Data
 
         String[][] tableData = list;
 

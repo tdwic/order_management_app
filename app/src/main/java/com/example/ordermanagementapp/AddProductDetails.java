@@ -83,6 +83,9 @@ public class AddProductDetails extends AppCompatActivity {
 
     }
 
+    /**
+     * Loading data into spinners
+     */
     public void LoadSpinner(){
         final ArrayList<String> SupplierList = new ArrayList<String>();
         AllUrlsForApp allUrlsForApp = new AllUrlsForApp();
@@ -128,6 +131,15 @@ public class AddProductDetails extends AppCompatActivity {
         queue.add(request);
     }
 
+    /**
+     * Adding a new product
+     * @param productName
+     * @param quantity
+     * @param unitPrice
+     * @param supplier
+     * @param orderNo
+     * @throws JSONException
+     */
     public void AddNewProduct(String productName , int quantity, Float unitPrice, String supplier, String orderNo ) throws JSONException {
         final DialogLoad dialogLoad = new DialogLoad(AddProductDetails.this);
         dialogLoad.startDialog();
@@ -166,6 +178,7 @@ public class AddProductDetails extends AppCompatActivity {
             }
         });
 
+        ///Increasing request time out
         booleanRequest.setRetryPolicy(new DefaultRetryPolicy(
                 5000,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
@@ -177,6 +190,10 @@ public class AddProductDetails extends AppCompatActivity {
 
     }
 
+    /**
+     * returning to previous intent
+     * @param v
+     */
     public void goToPrevious(View v){
         Intent intent = new Intent(AddProductDetails.this, NewOrder.class);
         startActivity(intent);

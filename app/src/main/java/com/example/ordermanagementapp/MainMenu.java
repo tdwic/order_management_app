@@ -22,12 +22,14 @@ public class MainMenu extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN); //enable full screen
 
-        setContentView(R.layout.activity_main_menu);
+        setContentView(R.layout.activity_main_menu); //setting the content
 
+        //assigning commponanets
         btn_log = (Button) findViewById(R.id.btn_log);
         btn_manage_requisitions = (Button) findViewById(R.id.btn_manage_requisions);
         btn_new_requisitions  = (Button) findViewById(R.id.btn_new_requisitions);
 
+        //button click lister starting
         btn_new_requisitions.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -37,6 +39,7 @@ public class MainMenu extends AppCompatActivity {
             }
         });
 
+        //button click lister starting
         btn_manage_requisitions.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -46,6 +49,7 @@ public class MainMenu extends AppCompatActivity {
             }
         });
 
+        //button click lister starting
         btn_log.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
