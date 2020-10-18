@@ -31,10 +31,11 @@ import org.json.JSONObject;
 
 public class ViewOrder extends AppCompatActivity {
 
-    private TextView txt_title;
+    private TextView txt_title,txt_price_total;
     private TableRow tableRowHeader,tableRowData;
     private TableLayout tableLayout;
     private Button save_btn, complete_btn;
+    private float total_price;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,10 +47,12 @@ public class ViewOrder extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN); //enable full screen
 
         setContentView(R.layout.activity_view_order);
-
+        total_price = 0.00f;
         txt_title = findViewById(R.id.txt_order_title);
         save_btn = findViewById(R.id.btn_save);
         complete_btn = findViewById(R.id.btn_complete);
+        txt_price_total = findViewById(R.id.txt_total_price);
+        txt_price_total.setText("Rs. "+total_price);
 
         Intent intent = getIntent();
         final String SelectedOrderId = intent.getStringExtra("selectedOrderId");
@@ -145,6 +148,8 @@ public class ViewOrder extends AppCompatActivity {
 //                            tempData[i][4] = order.getString("X");
                             tempData[i][4] = "X";
 
+                            total_price = total_price + (Float.parseFloat(order.getString("price")) * Float.parseFloat(order.getString("quantity")));
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -152,6 +157,7 @@ public class ViewOrder extends AppCompatActivity {
 
                     }
                     dialogLoad.dismissDialog();
+                    txt_price_total.setText("Rs. "+total_price);
 
                     table_populate(tempData);
                 }else {
