@@ -15,6 +15,7 @@ public class AllUrlsForApp {
     private String getUnCompletedOrders = "https://oder-management-api.herokuapp.com/getUnCompletedOrders";
     private String saveFinalOrder = "https://oder-management-api.herokuapp.com/saveFinalOrder";
     private String saveInquiry = "https://oder-management-api.herokuapp.com/saveInquiry";
+    private String completedOrders = "https://oder-management-api.herokuapp.com/getCompletedOrders";
 
     public String getValidate() {
         return validate;
@@ -66,5 +67,9 @@ public class AllUrlsForApp {
 
     public String getSaveInquiry() {
         return saveInquiry;
+    }
+
+    public String getCompletedOrders() {
+        return completedOrders;
     }
 }
