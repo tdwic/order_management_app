@@ -7,14 +7,30 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.Volley;
+import com.example.ordermanagementapp.NonUiClases.AllUrlsForApp;
+import com.example.ordermanagementapp.NonUiClases.BooleanRequest;
+import com.example.ordermanagementapp.NonUiClases.DialogLoad;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class addEnquiry extends AppCompatActivity {
 
-    String orderID ;
+    String orderID, inquiry ;
     TextView orderText ;
     EditText enquiryDetText ;
+    Button inquiry_btn;
 
 
     @Override
@@ -30,9 +46,66 @@ public class addEnquiry extends AppCompatActivity {
 
         orderText = (TextView) findViewById(R.id.txt_orderID);
         enquiryDetText = (EditText) findViewById(R.id.txt_enquiry_det);
-
+        inquiry_btn = findViewById(R.id.add_enquiry);
+        inquiry = enquiryDetText.getText().toString();
         orderText.setText(orderID);
 
+        inquiry_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    inquiry = enquiryDetText.getText().toString();
+                    AddInquiryDetails(orderID,inquiry);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+    }
+
+    public void AddInquiryDetails(String OrderID, String Inquiry) throws JSONException {
+        final DialogLoad dialogLoad = new DialogLoad(addEnquiry.this);
+        dialogLoad.startDialog();
+        AllUrlsForApp allUrlsForApp = new AllUrlsForApp();
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url = allUrlsForApp.getSaveInquiry().toString();
+
+        try {
+            JSONObject jsonBody;
+            jsonBody = new JSONObject();
+            jsonBody.put("orderNo", OrderID);
+            jsonBody.put("inquiry", Inquiry);
+            String requestBody = jsonBody.toString();
+            BooleanRequest booleanRequest = new BooleanRequest(Request.Method.POST, url, requestBody, new Response.Listener<Boolean>() {
+                @Override
+                public void onResponse(Boolean response) {
+                    dialogLoad.dismissDialog();
+                    Toast.makeText(addEnquiry.this, "Process Completed", Toast.LENGTH_SHORT).show();
+
+                    Intent intent = new Intent(addEnquiry.this, Inquirylist.class);
+                    startActivity(intent);
+                    finish();
+
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(addEnquiry.this, error.toString(), Toast.LENGTH_SHORT).show();
+                }
+            });
+
+            booleanRequest.setRetryPolicy(new DefaultRetryPolicy(
+                    5000,
+                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+            ));
+
+            // Add the request to the RequestQueue.
+            queue.add(booleanRequest);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     public void clearData(View v){
