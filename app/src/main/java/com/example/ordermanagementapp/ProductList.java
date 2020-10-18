@@ -316,5 +316,6 @@ public class ProductList extends AppCompatActivity {
     public void goToPrevious(View v){
         Intent intent = new Intent(ProductList.this, AddProductDetails.class);
         startActivity(intent);
+        finish();
     }
 }

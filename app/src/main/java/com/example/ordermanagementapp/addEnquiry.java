@@ -43,6 +43,7 @@ public class addEnquiry extends AppCompatActivity {
     public void goToPrevious(View v){
         Intent intent = new Intent(addEnquiry.this, Inquirylist.class);
         startActivity(intent);
+        finish();
     }
 
 }

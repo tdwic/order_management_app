@@ -25,5 +25,6 @@ public class ViewOrder extends AppCompatActivity {
     public void goToPrevious(View v){
         Intent intent = new Intent(ViewOrder.this, ManageRequesitions.class);
         startActivity(intent);
+        finish();
     }
 }

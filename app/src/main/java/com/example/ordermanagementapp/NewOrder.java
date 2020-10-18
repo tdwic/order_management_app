@@ -223,6 +223,7 @@ public class NewOrder extends AppCompatActivity {
     public void goToPrevious(View v){
         Intent intent = new Intent(NewOrder.this, MainMenu.class);
         startActivity(intent);
+        finish();
     }
 
 }

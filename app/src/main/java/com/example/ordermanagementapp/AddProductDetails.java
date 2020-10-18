@@ -180,6 +180,7 @@ public class AddProductDetails extends AppCompatActivity {
     public void goToPrevious(View v){
         Intent intent = new Intent(AddProductDetails.this, NewOrder.class);
         startActivity(intent);
+        finish();
     }
 
 }

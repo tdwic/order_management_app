@@ -199,6 +199,7 @@ public class ManageRequesitions extends AppCompatActivity {
     public void goToPrevious(View v){
         Intent intent = new Intent(ManageRequesitions.this, MainMenu.class);
         startActivity(intent);
+        finish();
     }
 
 }
