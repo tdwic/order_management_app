@@ -87,6 +87,7 @@ public class Inquirylist extends AppCompatActivity {
                         Intent i1 = new Intent(Inquirylist.this,addEnquiry.class);
                         i1.putExtra("orderID",result);
                         startActivity(i1);
+                        finish();
 
 
                         isRowSelect[0] = true;

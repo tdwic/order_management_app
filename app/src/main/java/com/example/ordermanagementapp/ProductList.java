@@ -182,7 +182,7 @@ public class ProductList extends AppCompatActivity {
 //                            tempData[i][4] = order.getString("X");
                             tempData[i][4] = "X";
 
-                            total_price = total_price + Float.parseFloat(order.getString("price"));
+                            total_price = total_price + (Float.parseFloat(order.getString("price")) * Float.parseFloat(order.getString("quantity")));
 
                         } catch (JSONException e) {
                             e.printStackTrace();

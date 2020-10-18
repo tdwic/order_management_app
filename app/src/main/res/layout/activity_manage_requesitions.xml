@@ -21,11 +21,11 @@
         app:layout_constraintVertical_bias="0.182" />
 
     <Button
-        android:id="@+id/button16"
+        android:id="@+id/btn_view_order"
         android:layout_width="360dp"
         android:layout_height="40dp"
         android:background="@drawable/custom_button"
-        android:text="@string/search"
+        android:text="@string/view_orders"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

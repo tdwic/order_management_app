@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -34,6 +35,8 @@ public class ManageRequesitions extends AppCompatActivity {
 
     private TableLayout tableLayout;
     private TableRow tableRowHeader,tableRowData;
+    private Button btn_order_view;
+    private String selectedOrderId = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +48,19 @@ public class ManageRequesitions extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN); //enable full screen
 
         setContentView(R.layout.activity_manage_requesitions);
+        selectedOrderId = "";
+        btn_order_view = findViewById(R.id.btn_view_order);
         getAllOrders();
 
+        btn_order_view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ManageRequesitions.this, ViewOrder.class);
+                intent.putExtra("selectedOrderId", selectedOrderId);
+                startActivity(intent);
+                finish();
+            }
+        });
 
 
     }
@@ -71,7 +85,7 @@ public class ManageRequesitions extends AppCompatActivity {
                         try {
                             JSONObject order = response.getJSONObject(i);
 
-                            tempData[i][0] = order.getString("orderId").toString();
+                            tempData[i][0] = order.getString("orderNo").toString();
                             tempData[i][1] = order.getString("site");
                             tempData[i][2] = order.getString("approvelManager");
                             tempData[i][3] = order.getString("totalPrice");
@@ -162,7 +176,9 @@ public class ManageRequesitions extends AppCompatActivity {
                         TextView textView = (TextView) selectedRow.getChildAt(0);
                         String result = textView.getText().toString();
 
-                        Toast.makeText(ManageRequesitions.this, result, Toast.LENGTH_SHORT).show();
+                        selectedOrderId = result;
+
+                        //Toast.makeText(ManageRequesitions.this, result, Toast.LENGTH_SHORT).show();
 
                         isRowSelect[0] = true;
 

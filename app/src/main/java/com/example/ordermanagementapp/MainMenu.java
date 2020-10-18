@@ -33,6 +33,7 @@ public class MainMenu extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainMenu.this, NewOrder.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -41,6 +42,7 @@ public class MainMenu extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainMenu.this, ManageRequesitions.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -49,6 +51,7 @@ public class MainMenu extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainMenu.this, Inquirylist.class);
                 startActivity(intent);
+                finish();
             }
         });
 
