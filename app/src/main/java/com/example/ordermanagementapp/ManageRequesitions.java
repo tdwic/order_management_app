@@ -71,7 +71,7 @@ public class ManageRequesitions extends AppCompatActivity {
         dialogLoad.startDialog();
         AllUrlsForApp allUrlsForApp = new AllUrlsForApp();
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = allUrlsForApp.getOrders().toString();
+        String url = allUrlsForApp.getGetUnCompletedOrders().toString();
 
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
