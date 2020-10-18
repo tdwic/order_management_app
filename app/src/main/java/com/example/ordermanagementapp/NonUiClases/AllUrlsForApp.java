@@ -13,6 +13,8 @@ public class AllUrlsForApp {
     private String OrderDetailsByNo = "https://oder-management-api.herokuapp.com/getOrderDetailsByNo/";
     private String updateOrderStatus = "https://oder-management-api.herokuapp.com/updateStatus";
     private String getUnCompletedOrders = "https://oder-management-api.herokuapp.com/getUnCompletedOrders";
+    private String saveFinalOrder = "https://oder-management-api.herokuapp.com/saveFinalOrder";
+    private String saveInquiry = "https://oder-management-api.herokuapp.com/saveInquiry";
 
     public String getValidate() {
         return validate;
@@ -56,5 +58,13 @@ public class AllUrlsForApp {
 
     public String getGetUnCompletedOrders() {
         return getUnCompletedOrders;
+    }
+
+    public String getSaveFinalOrder() {
+        return saveFinalOrder;
+    }
+
+    public String getSaveInquiry() {
+        return saveInquiry;
     }
 }

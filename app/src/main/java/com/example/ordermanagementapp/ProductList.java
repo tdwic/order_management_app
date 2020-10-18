@@ -37,6 +37,7 @@ public class ProductList extends AppCompatActivity {
     private Button add_product_btn, approve_btn, get_approve_btn, save_btn;
     private TextView txt_price_total;
     private String OrderNo = "";
+    private String Supplier = "";
     private TableRow tableRowHeader,tableRowData;
     private TableLayout tableLayout;
     private float total_price;
@@ -66,7 +67,7 @@ public class ProductList extends AppCompatActivity {
         get_approve_btn = (Button) findViewById(R.id.btn_get_approve);
         get_approve_btn.setEnabled(false);
         save_btn = (Button) findViewById(R.id.btn_save);
-        save_btn.setEnabled(false);
+//        save_btn.setEnabled(false);
 
 
 
@@ -110,13 +111,53 @@ public class ProductList extends AppCompatActivity {
         save_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                SaveOrderDetails(OrderNo,Supplier, total_price);
             }
         });
 
     }
 
-    
+    public void SaveOrderDetails(String orderId, String supplier, Float totalPrice){
+        final DialogLoad dialogLoad = new DialogLoad(ProductList.this);
+        dialogLoad.startDialog();
+        AllUrlsForApp allUrlsForApp = new AllUrlsForApp();
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url = allUrlsForApp.getSaveFinalOrder().toString();
+
+        try {
+            JSONObject jsonBody;
+            jsonBody = new JSONObject();
+            jsonBody.put("orderNo", orderId);
+            jsonBody.put("supplier", supplier);
+            jsonBody.put("totalPrice", totalPrice);
+            String requestBody = jsonBody.toString();
+
+            BooleanRequest booleanRequest = new BooleanRequest(Request.Method.POST, url, requestBody, new Response.Listener<Boolean>() {
+                @Override
+                public void onResponse(Boolean response) {
+                    dialogLoad.dismissDialog();
+                    Toast.makeText(ProductList.this, "Process Completed", Toast.LENGTH_SHORT).show();
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(ProductList.this, error.toString(), Toast.LENGTH_SHORT).show();
+                }
+            });
+
+            booleanRequest.setRetryPolicy(new DefaultRetryPolicy(
+                    5000,
+                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+            ));
+
+            // Add the request to the RequestQueue.
+            queue.add(booleanRequest);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
 
     public void UpdateOrderStatus(String status, String OrderId) throws JSONException {
         final DialogLoad dialogLoad = new DialogLoad(ProductList.this);
@@ -185,6 +226,7 @@ public class ProductList extends AppCompatActivity {
                             tempData[i][4] = "X";
 
                             total_price = total_price + (Float.parseFloat(order.getString("price")) * Float.parseFloat(order.getString("quantity")));
+                            Supplier = order.getString("supplier");
 
                         } catch (JSONException e) {
                             e.printStackTrace();

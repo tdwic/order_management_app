@@ -87,14 +87,13 @@ public class ManageRequesitions extends AppCompatActivity {
 
                             tempData[i][0] = order.getString("orderNo").toString();
                             tempData[i][1] = order.getString("site");
-                            tempData[i][2] = order.getString("approvelManager");
+                            tempData[i][2] = order.getString("supplier");
                             tempData[i][3] = order.getString("totalPrice");
                             tempData[i][4] = order.getString("supplier");
 
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-
 
                     }
                     dialogLoad.dismissDialog();
